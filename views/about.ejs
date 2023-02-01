@@ -1,0 +1,18 @@
+<%- include("header") -%>
+
+<h2>Select the database's origin.</h2>
+<form class="formServerSelect box" action="/origin" method="post">
+  <p>Advice: The register will change depending de database's origin.</p>
+  <div>
+    <input type="radio" name="database" id="atlas" value="atlas" />
+    <label for="atlas"> Server: MongoDB - Atlas </label>
+  </div>
+  <div>
+    <input type="radio" name="database" id="localhost" value="local"/>
+    <label for="localhost"> Server: LocalHost </label>
+  </div>
+  <input type="submit" value="Aceptar" />
+</form>
+<!-- <a href="/collections_info">Collection Info</a> -->
+
+<%- include("footer") -%>
