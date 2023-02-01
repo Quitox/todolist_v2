@@ -1,10 +1,15 @@
-//jshint esversion:6
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const { render } = require("ejs");
-const UQ = require(__dirname + "/Utilities_Quito.js");
+// const express = require("express");
+import express from "express";
+// const bodyParser = require("body-parser");
+import bodyParser from "body-parser";
+// const mongoose = require("mongoose");
+import mongoose from "mongoose";
+// const { render } = require("ejs");
+import {render} from "ejs";
+// const UQ = require(__dirname + "/Utilities_Quito.js");
+// const utilidades = __dirname + "/Utilities_Quito.js"
+import {firstLetterUp} from "./Utilities_Quito.js";
 
 const app = express();
 
@@ -13,7 +18,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// const UQ.firstLetterUp = (word) => {
+// const firstLetterUp = (word) => {
 //   return word.length !== 0
 //     ? word.substring(0, 1).toUpperCase() +
 //         word.substring(1, word.length).toLowerCase()
@@ -95,8 +100,8 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-  const listName = UQ.firstLetterUp(req.body.list);
-  const itemName = UQ.firstLetterUp(req.body.newItem);
+  const listName = firstLetterUp(req.body.list);
+  const itemName = firstLetterUp(req.body.newItem);
 
   const document = new Item({ name: itemName });
 
@@ -118,7 +123,7 @@ app.post("/", function (req, res) {
 
 app.post("/delete", function (req, res) {
   const checkedItemId = req.body.checkbox;
-  const listName = UQ.firstLetterUp(req.body.list);
+  const listName = firstLetterUp(req.body.list);
 
   if (listName === "Today") {
     // Item.deleteOne({"_id": checkedItemId}, function(err, doc){
@@ -150,7 +155,7 @@ app.get("/about", function (req, res) {
 });
 
 app.get("/:listName", function (req, res) {
-  const FormatedListName = UQ.firstLetterUp(req.params.listName);
+  const FormatedListName = firstLetterUp(req.params.listName);
 
   List.findOne({ name: FormatedListName }, function (err, foundList) {
     if (!err) {
