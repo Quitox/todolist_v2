@@ -216,7 +216,9 @@ app.post("/origin", function (req, res) {
   changeServer(origin);
 });
 
-app.listen(3000, function () {
-  console.log("Server started on port 3000");
-  console.log("http://localhost:3000");
+const puerto = process.env.PORT || 3000;
+
+app.listen(puerto, function () {
+  console.log("Server started on port "+puerto);
+  console.log("http://localhost:"+puerto);
 });
